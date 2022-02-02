@@ -423,7 +423,7 @@ public class twodarray{
 * 메소드의 이름은 소문자로 시작하는 것이 관례
 
 ```java
-[접근제한자][활용제한자] 반환값 메소드이름([매개변수들]){
+[접근제한자][활용제한자] 반환값 메소드이름([매개변수들]){ 
     행위 기술 ...
 }
 // 접근 제한자 : public / protected / default() / private
@@ -431,7 +431,11 @@ public class twodarray{
 public static void main(String[] a){}
 ```
 
-##### 
+리턴 타입 설정: 아무것도 반환하지 않을 때는 void
+
+여러 타입의 결과를 반환할 때는 객체로 묶어서 반환
+
+VariableArgs(몇개를 받을지 모를때) int...
 
 ##### 선언
 
@@ -457,7 +461,32 @@ Test t = new Test(); 	// 객체 생성
 t.call(100);			// 메서드 호출
 ```
 
-* static이 메소드에 선언되어 있을때는 클래스이름.메소드이름으로 호출
+
+
+| 비고        | static member                               | non static member(instance member) |
+| ----------- | ------------------------------------------- | ---------------------------------- |
+| 소속        | 클래스 (클래스 올라갈때 메모리 위에 올라감) | 객체                               |
+| 같은 클래스 | 바로 호출                                   | 바로 호출                          |
+| 다른 클래스 | 클래스\_이름.멤버_이름                      | 객체_이름.멤버\_이름               |
+
+class 멤버와 instance 멤버간의 참조와 호출
+
+* 가장 중요한 것은 메모리에 있는가?
+  * 메모리에 있으면 호출가능
+  * 메모리에 없으면 호출 불가
+* static member => 언제나 메모리에 있다.
+  * class 로딩시 자동으로 등록한다.
+* instance member => 객체 생성 전에는 메모리에 없다.
+  * 객체 생성시 모든 일반 멤버들은 메모리에 생성된다.
+  * 객체 즉 레퍼런스를 통해서 접근한다.
+
+* 메서드 호출 스택
+  * First in Last out의 구조 
+* 기본형 변수와 참조형 변수
+  * 메서드 호출 시 파라미터로 입력된 값을 복사해서 전달한다. => 기본형 변수 (원본은 변하지 않는다.)
+  * Java는 call by Value
+
+
 
 ```java
 class Test{
@@ -508,6 +537,19 @@ public void init(int channel, int volumn){
 
 * 여러 개의 값을 리턴하고 싶다면 배열을 이용 (Collection 객체를 이용)
 * 무조건 리턴 할 필요 없음
+
+
+
+##### 메서드 오버로딩
+
+* `overloading`: 동일한 기능을 수행하는 메서드의 추가작성
+  * 메서드 이름을 통일하고 input타입에 따라 다르게 작동
+  * ex) eat <= eatUsingChopsticks, eatUsingFork, eatUsingSpoon
+  * ex) println
+  * 기얼해야할 메서드가 감소하고 중복 코드에 대한 효율적 관리 가능
+  * 메서드 이름은 동일하고 파라미터의 개수 또는 순서 타입이 달라야한다.
+
+![image-20220129002803440](java.assets/image-20220129002803440.png)
 
 
 
@@ -642,6 +684,40 @@ public class ExDateMain{
 ##### 문제 2
 
 ```java
+class Dog{
+    String name = "이름모름";
+    int age = 0;
+
+    Dog(){}
+    Dog(String n){
+        name = n;
+    }
+    Dog(int a){
+        age = a;
+    }
+    Dog(String n, int a){
+        name = n;
+        age = a;
+    }
+
+    void info(){
+        System.out.printf("강아지의 이름은 %s이고 나이는 %d입니다.\n", this.name, this.age);
+    }
+}
+
+public class DogMain {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        Dog d2 = new Dog("쫑");
+        Dog d3 = new Dog(3);
+        Dog d4 = new Dog("메리", 2);
+
+        d.info();
+        d2.info();
+        d3.info();
+        d4.info();
+    }
+}
 ```
 
 
