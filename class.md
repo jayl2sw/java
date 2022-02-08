@@ -304,3 +304,28 @@ int[] iArr = new int[3];
 
 
 
+## Chapter 3. 상속 (Inheritance)
+
+* 상속: 기존 클래스의 자산(멤버, `변수 및 메서드`)을 자식 클래스에서 재사용하기 위한 것
+  * 부모의 생성자와 초기화 블록은 상속하지 않는다.
+* 기존 클래스의 멤버를 물려 받기 때문에 코드의 절감
+  * 부모의 코드를 변경하면 모든 자식들에게도 적용 => 유지 보수성 향상
+* 상속의 적용
+  * extends 키워드 사용
+
+```java
+public class Person{
+    String name;
+    
+    void eat(){}
+    void jump(){}
+}
+
+public class SpiderMan extends Person{
+    boolean isSpider;
+    void fireWeb()
+}
+```
+
+
+
