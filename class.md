@@ -329,3 +329,271 @@ public class SpiderMan extends Person{
 
 
 
+* Object클래스
+  * 모든 클래스의 조상클래스
+    * 별도의 extends 선언이 없는 클래스들은 extends Object가 생략됨
+    * 따라서 모든 클래스에는 Object 클래스에 정의된 메서드가 있음
+
+
+
+* 다양한 상속 관계
+
+  * 상속의 관계는 is a 관계라고 함
+
+    * Person is a Object, SpiderMan is a Person  // 하나의 종류이다~
+
+  * Person과 Employee의 관계 => 부모 관계, // 
+
+  * Employee와 SpiderMan의 관계 => 관계 없음(형제 관계가 존재 하지 않는다.)
+
+    
+
+* 단일 상속(Single Inheritance)
+
+  * 다중 상속의 경우 여러 클래스의 기능을 물려 받을 수 있으나 관계가 매우 복잡해짐
+
+    * 동일한 이름의 메서드가 두 부모에게 있다면 자식은 어떤 메서드를 사용할 것인가?
+
+  * 자바는 단일 상속만 지원
+
+    * 대신 interface와 포함 관계(has a)를 사용
+
+      
+
+* 포함관계
+  * s상속 이외에 클래스를 재활용 하는 방법
+    * 2개 이상의 클래스에서 특정을 가져올 때, 하나는 상속, 나머지는 멤버 변수로 처리
+  * 포함 관계의 UML 표현: 실선
+  * Spider의 코드를 수정하면 SpiderMan에도 반영되므로 유지 보수성 확보
+  * 상속이냐 포함이냐 그것이 문제로다
+  * 어떤 클래스를 상속 받고 어떤 클래스를 포함해야하는가?
+    * 상속: is a 관계가 성립하는가? =>SpiderMan is a Person
+    * 포함: has a 관계가 성립하는가? => SpiderMan has a Spider
+
+```java
+public class Person{
+    String name;
+    
+    void eat(){}
+    void jump(){
+        System.out.prinln("두 다리로 힘껏 점프")
+    }
+}
+
+public class Spider{
+        
+    void jump(){
+        System.out.println("키*1000만큼 엄청난 점프")
+    }
+    void fireWeb(){}
+}
+
+
+public class SpiderMan2 extends Person{
+	Spider spider = new Spider;
+    boolean isSpider;
+    
+    void fireWeb(){
+        if (isSpider){
+            spider fireWeb();
+        }else{
+            System.out.println("Person은 거미줄 발사 불가")
+        }
+    }
+}
+```
+
+
+
+### 메서드 재정의
+
+* 메서드 오버라이딩(overriding)
+  * 조상 클래스에 정의된 메서드를 자식 클래스에서 적합하게 수정하는 것
+  * 오버라이딩 조건
+    * 메서드 이름이 같아야 한다.
+    * 매개 변수의 개수, 타입, 순서가 같아야 한다.
+    * 리턴 타입이 같아야 한다.												//메서드 선언부가 같아야한다.
+    * 접근 제한자는 부모 보다 범위가 없거나 같아야 한다.
+    * 조상보다 더 큰 예외를 던질 수 없다.
+
+```java
+public class SpiderMan2 extends Person{
+	Spider spider = new Spider;
+    boolean isSpider;
+    
+    void fireWeb(){
+        if (isSpider){
+            spider fireWeb();
+        }else{
+            System.out.println("Person은 거미줄 발사 불가")
+        }
+    }
+    
+    void jump() {
+        if(isSpider){
+            spider.jump();
+        }else{
+            System.out.println("두다리로 힘껏 점프")
+        }
+    }
+}
+```
+
+
+
+* 정리! OverLoading vs OverRidding
+  * Overloading => 같은 메서드에 입력 파라미터 별로 다른 매커니즘 (추가 적재)
+  * Overridding => 같은 메서드를 자손 클래스에 적합하게 수정하는 것
+
+
+
+* Annotation
+
+  * 사전적 의미: 주석
+  * 컴파일러, JVM, 프레임워크 등이 보는 주석
+  * 소스 코드에 메타 데이터를 삽입하는 형태 
+    * 소스 코드에 붙여 놓은 라밸
+    * 코드에 대한 정보 추가 => 소스 코드의 구조 변경, 환경 설정 정보 추가 등의 작업 진행
+  * 예시
+    * Deprecated: 더 이상 지원하지 않는 메서드가 될 수 있다. (안쓰고 싶게 만듬)
+    * Override: 제대로 오버라이드 되었는지 확인해준다.
+    * SuppressWarning:  컴파일러에게 사소한 warning의 경우 신경쓰지 말라고 알려줌
+
+
+
+#### Object 클래스
+
+* 가장 최상위 클래스로 몸든 클래스의 조상
+  * Object의 멤버는 모든 클래스의 멤버
+
+
+
+* toString 메서드
+  * 객체를 문자열로 변경하는 메서드
+  * 정작 궁금한 내용은 주소값이 아닌 내용 => 재정의 해서 사용
+
+
+
+* equals 메서드
+  * 두 객체가 같은지를 비교하는 메서드
+  * 두 개의 레버런스 변수가 같은 객체를 가리키고 있는가? (같은 객체를 참조하고 있는가?)
+  * 두 객체의 내용을 비교 할 수 있도록 equals메서드 재정의
+    * 객체의 주소 비교: == 활용
+    * 객체의 내용 비교: equals 재정의
+
+
+
+* hashCode
+
+  * 객체의 해시 코드 : 시스템에서 객체를 구별하기 위해 사용되는 정수 값
+  * HashSet, HashMap 등에서 객체의 동일성을 확인하기 위해 사용
+
+  * equals 메서드를 재정의 할 때는 반드시 hashCode도 재정의 할 것
+
+  
+
+* Object의 메서드 재정의
+
+
+
+* super 키워드
+
+  * this를 통해 멤버에 접근했듯이 super를 통해 조상 클래스 멤버 접근
+    * super.를 통해 조상의 메서드 호출로 조상의 코드 재사용
+    * super.super로 가지는 않는다.
+
+  * 변수의 scope
+    * 사용된 위치에서 점점 확장해가며 처음 만난 선언부에 연결됨
+    * method내부 => 해당 클래스 멤버변수 => 조상 클래스 멤버 변수 
+
+  * this()가 해당 클래스의 다른 생성자를 호출하듯 super()는 조상 클래스의 생성자 호출
+    * 조상 클래스에 선언된 멤버들은 조상 클래스의 생성자에서 초기화가 이뤄지므로 이를 재활용
+    * 자식 클래스에 선언된 멤버들만 자식 클래스 생성자에서 초기화
+  * super()는 자식 클래스 생성자의 맨 첫줄에서만 호출가능
+    * 즉 생성자의 첫줄에만 this() 또는 super()가 올 수 있다 
+      * 두개 동시에 사용 불가능하다.
+  * 명시적으로 this() 또는 super()를 호출하지 않는 경우 컴파일러가 super() 삽입
+    * 결론적으로 맨 상위의 Object까지 객체가 다 만들어지는 구조
+  * 생성자 호출과 객체 생성의 단계
+
+  ```java
+  class Person{
+      String name;
+      Person(String name){
+          this.name = name;
+      }
+  }
+  
+  public class SpiderMan extends Person{
+      Spider spider = new Spider();
+      boolean isSpider;
+      
+      SpiderMan(String name, Spider spider, boolean isSpider) {
+          super(name);
+          this.spider = spider;
+          this.isSpider = true;
+      }
+      
+      SpiderMan(String name){
+          this(name, new Spider(), true);
+      }
+      
+      public static void main(String[] args){
+          SpiderMan sman = new SpiderMan("피터파커")
+      }
+  }
+  ```
+
+  
+
+![image-20220209214735137](class.assets/image-20220209214735137.png)
+
+
+
+### Package & import
+
+Package
+
+* PC의 많은 파일 관리 => 폴더 이용
+  * 유사한 목적의 파일을 기준으로 작성
+  * 이름은 의미 있는 이름으로, 계층적 접근
+* 프로그램의 많은 클래스 => 패키지 이용
+  * 패키지의 이름은 의미 있는 이름으로 만들고 .를 통해 계층적 접근
+  * 물리적으로 패키지는 클래스 파일을 담고 있는 디렉터리
+* package의 선언
+  * package package_name;
+  * 주석, 공백을 제외한 첫 번째 문장에 하나의 패키지만 선언
+  * 모든 클래스는 반드시 하나의 패키지에 속한다.
+    * 생략시 default package
+    * default package는 되도록 사용하지 않는다.
+* 일반적인 package naming 룰
+  * 소속.프로젝트.용도
+
+
+
+import
+
+* 다른 패키지에 선언된 클래스를 사용하기 위해 키워드
+  * 패키지와 클래스 선언 사이에 위치
+  * 패키지와 달리 여러번 선언 가능
+* 선언 방법
+  * import 패키지명.클래스명
+  * import 패키지명.*;
+    * 하위 패키지까지 import 하지는 않는다.
+* import한 package의 클래스 이름이 동일하여 명확히 구분해야 할 때
+  * 클래스 이름 앞에 전체 패키지 명을 입력
+* default import package
+  * java.lang.*;
+  * 단축키 ctrl+shift+O
+
+
+
+일반적인 클래스 레이아웃
+
+* 패키지 선언부
+* 외부 패키지 import
+* class 선언부
+* 멤버변수
+* 초기화블록
+* 생성자
+* 멤버 메서드
