@@ -908,3 +908,65 @@ void afterPoly(){
 
 * GUI: Graphic User Interface
   * 프로그램과 사용자 사이의 접점
+
+* 누르면 저장 되겠지?
+
+  실행, 결과, 동작; => How? 는 궁금치 않다! 선언부만 필요!
+
+  인터페이스를 사이에 두고 한쪽은 사용에만 관심, 한 쪽은 구현에만 관심
+
+  
+
+* 인터페이스 작성
+
+  * 최고 수준의 추상화 단계 : 모든 메서드가 abstract인 상태
+    * JDK8에서 default method 와 static method 추가
+
+* 형태
+
+  * 클래스와 유사하게 interface 선언
+  * 멤버구성
+    * 모든 멤버변수는 public static final이며 생략 가능
+    * 모든 메서드는 public abstract이며 생략 가능
+
+  ```java
+  public interface MyInterface {
+      public static final int MEMBER1 = 10; //변수에는 public static final 생략 가능
+      int MEMBER2 = 10;
+      
+      public abstract void method1(int params);
+      void method2(int params); // 메서드에는 public static이 생략 되어있다.
+  }
+  ```
+
+* 인터페이스 상속
+
+  * 클래스와 마찬가지로 인터페이스도 extends를 이용해 상속이 가능
+  * 클래스와 다른점은 인터페이스는 다중 상속이 가능
+    * 헷갈릴 메서드 구현 자체가 없다.
+
+* 인터페이스 구현과 객체 참조
+
+  * 클래스에서 implements 키워드를 사용해서 interface 구현
+
+  * implements한 클래스는
+
+    * 모든 abstract 메서드를 override해서 구현하거나
+    * 구현하지 않을 경우 abstract 클래스로 표시해야함
+
+  * 여러개의 interface implements 가능 
+
+    * ##### 질문. implements가 뭐하는거쥬?
+
+
+
+* 인터페이스 구현과 객체 참조
+  * 다형성은 조상 클래스 뿐 아니라 조상 인터페이스에도 적용
+* 인터페이스의 필요성
+  * 구현의 강제로 표준화 처리
+    * abstract 메서드 사용
+  * 인터페이스를 통한 간접적인 클래스 사용으로 손쉬운 모듈 교체 지원
+  * 서로 상속의 관계가 없는 클래스들에게 인터페이스를 통한 관계 부여로 다형성 확장
+  * 모듈간 독립적 프로그래밍 가능 => 개발 기간 단축
+
+* ##### 질문 - 비어있는 클래스를 상속 받는 것과 인터페이스를 사용하는 것이 뭐가 다른가?
