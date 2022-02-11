@@ -4,9 +4,9 @@
 
 ## Part 01. Java Basic
 
-### Chapter 1. 자바 프로그래밍 언어
+## Chapter 1. 자바 프로그래밍 언어
 
-#### - 자바의 특징
+### - 자바의 특징
 
 1. 단순하다 (Simple)
    1. 포인터 연산이 없다. (메모리상의 임의의 주소에 액세스 할 수 있는 기능)
@@ -29,15 +29,15 @@
 9. 다중 쓰레드
 10. 동적 결합
 
-#### - Java Virtual Machine
+### - Java Virtual Machine
 
 * `JVM` : 자바 바이트 코드를 실행 할 수 있는 주체
 
 
 
-### Chapter 2. 자바 프로그래밍 입문
+## Chapter 2. 자바 프로그래밍 입문
 
-#### Main Method
+### Main Method
 
 * `메인 메소드` : 실행 명령인 java를 실행 시 가장 먼저 호출 되는 부분
   * if main() 메소드가 없다면 실행 될 수 없음.
@@ -51,7 +51,7 @@ public static void main(String[] args){
 
 
 
-#### 출력문
+### 출력문
 
 * `print` :
 * `println` :
@@ -59,7 +59,7 @@ public static void main(String[] args){
 
 
 
-#### 변수(variable)
+### 변수(variable)
 
 * ##### 정의 : 데이터를 저장할 메모리의 위치를 나타내는 이름
 
@@ -79,14 +79,14 @@ int age = 30;	String name = '철수';
 
 ​	대소문자 구분, 공백 x, 숫자로 시작x, 예약어 x
 
-#### Class
+### Class
 
 * 자바 프로그램의 최소 구성 단위
 * 선언된 클래스 내부에 실행에 필요한 변수나 메서드 등의 정의 ({} 내에 작성)
 
 
 
-#### java application
+### java application
 
 * 바이트 코드로 번역된 후에 바로 실행할 수 있는 일반 프로그램
 * 클래스 내에 java라는 명령어로 프로그램을 실행할 때, 자동으로 호풀되어 프로그램을 시작하는 main() 메서드를 가지고 있어야함
@@ -104,7 +104,7 @@ public class JavaApp{
 
 
 
-#### Data Type
+### Data Type
 
 | 표현 형태 | 데이터타입 |    크기     |      표현범위       |
 | :-------: | :--------: | :---------: | :-----------------: |
@@ -123,7 +123,7 @@ public class JavaApp{
 
 
 
-#### 데이터 타입의 변환
+### 데이터 타입의 변환
 
 * 변수의 타입을 다른 타입으로 변경
 * `Promotion (묵시적 형변환)` : 작은 데이터 타입 => 큰 데이터 타입
@@ -136,7 +136,7 @@ public class JavaApp{
 
 
 
-#### 자바 연산자 (기본 문법)
+### 자바 연산자 (기본 문법)
 
 * 산술연산자
   * 정수형, 실수형에 사용됨
@@ -156,7 +156,7 @@ public class JavaApp{
 
 
 
-#### 제어문 (조건문)
+### 제어문 (조건문)
 
 * if 문:
 
@@ -189,7 +189,7 @@ switch (수식) {
 
 
 
-#### 제어문 (반복문)
+### 제어문 (반복문)
 
 * for 문:
 
@@ -276,7 +276,7 @@ class ContinueTest{
 
 
 
-#### 배열
+### 배열
 
 - **같은 종류의 데이터**를 저장하기 위한 자료구조
 - **크기 고정** (한번 생성된 배열은 크기를 바꿀 수 없다.)
@@ -597,3 +597,314 @@ import
 * 초기화블록
 * 생성자
 * 멤버 메서드
+
+
+
+### 접근 제한자 및 데이터 은닉과 보호
+
+* 제한자
+  * 클래스, 변수, 메서드 선언부에 함께 사용되어 부가적인 의미 부여
+  * 종류
+    * 접근 제한자 : public, protected, (default = package), private
+    * 그 외 제한자
+      * static: 클래스 레벨의 요소 설정
+      * final: 요소를 더 이상 수정할 수 없게 함
+      * abstract: 추상 메서드 및 추상 클래스 작성
+      * synchronized: 멀티스레드에서의 동기화 처리
+    * 하나의 대상에 여러 제한자를 조합 가능하나 접근 제한자는 하나만 사용 가능
+    * 순서는 무관
+      * 일반적으로 접근 제한자를 맨 앞으로
+
+
+
+* final 
+  * 마지막, 더 바뀔 수 없음
+  * 용도 
+    * final class - 더 이상 확장 할 수 없음 : 상속 금지 => 오버라이드 방지 (이미 완벽한 클래스들)
+    * final method - 더 이상 재정의 할 수 없음 : overriding 금지 (상속은 가능하다.)
+    * final variable - 더 이상 값을 바꿀 수 없음 : 상수화 (ex pi = 3.1415926535)
+
+
+
+* 접근 제한자 
+  * 멤버 등에 사용되며 해당 요소를 외부에서 사용할 수 있는지 설정
+  * method override 조건의 확인
+    * 부모의 제한자 범위와 같거나 넓은 범위로만 사용 가능
+
+![image-20220210104349062](class.assets/image-20220210104349062.png)
+
+* 데이터 은닉과 보호 (Encapsulation E)
+  * 누군가 당신의 정보를 마음대로 바꾼다면?
+* 보호 받지 못하는 이유 
+  * 외부에서 변수에 직접 접근하기 때문
+* 정보를 보호하기 위한 대책은
+  * 변수는 private 접근으로 막기
+  * 공개되는 메서드를 통한 접근 통로 마련: setter / getter
+    * 메서드에 정보 보호 로직 작성
+
+
+
+* 객체의 생성 제어와 Singleton 디자인 패턴
+
+  * 객체의 생성을 제한해야 한다면?
+
+    * 여러개의 객체가 필요 없는 경우
+      * 객체를 구별할 필요가 없는 경우 = 수정 가능한 멤버 변수가 없고 기능만 있는 경우
+      * 이런 객체를 stateless 한 객체라고 한다.
+    * 객체를 계속 생성/삭제 하는데 많은 비용이 들어서 재사용이 유리한 경우
+
+  * Singleton 디자인 패턴
+
+    * 외부에서 생성자에 접근 금지 => 생성자의 접근 제한자를 private으로 설정
+
+    * 내부에서는 private에 접근 가능하므로 직접 객체 생성 => 멤버 변수이므로 private 설정
+
+    * 외부에서 private member에 접근 가능한 getter 생성 => setter는 불필요
+
+    * 객체 없이 외부에서 접근할 수 있도록 getter와 변수에 static 추가
+
+    * 외부에서는 언제나 getter를 통해서 객체를 참조하므로 하나의 객체 재사용 
+
+      
+
+```java
+질문?
+    멤버 변수가 없고 기능만 있는 경우 ex) Scanner 같은 느낌이라고 생각이 드는데 
+    이건 항상 Scanner sc = new Scanner(); 해서 썼는데 왜그런가요?
+    이게 getter와 변수에 static을 달면 어떻게 호출 할 수 있을 까요?
+```
+
+
+
+
+
+### 다형성 (Polymorphism)
+
+
+
+* 하나의 객체가 많은 형(타입)을 가질 수 있는 성질
+  * 황금잉어빵 `is a` 붕어빵!!
+
+#### 다형성의 정의
+
+* 상속 관계에 있을 때 조상 클래스의 타입으로 자식 클래스 객체를 레퍼런스 할 수 있다.
+
+* 상속 관계에서 조상 클래스의 타입으로 자식 클래스 객체를 레퍼런스 할 수 있다.
+
+  * Venom => SpiderMan => Person => Object
+
+  * ```java
+    SpiderMan onlyOne = new SpiderMan();
+    
+    SpiderMan sman = onlyOne;
+    Person person = onlyOne;
+    Object obj = onlyOne;
+    Venom venom = onlyOne;
+    ```
+
+  * onlyOne 은 SpiderMan 타입인가?
+
+    * SpiderMan타입으로 onlyOne을 참조할 수 있는가? Yes
+
+  * onlyOne 은 Person 타입인가?
+
+    * Person타입으로 onlyOne을 참조할 수 있는가? Yes
+
+  * onlyOne 은 Object 타입인가?
+    * Object타입으로 onlyOne을 참조할 수 있는가? Yes
+
+  * onlyOne은 Venom 타입인가? 
+    * Venom타입으로 onlyOne을 참조할 수 있는가? No
+
+
+
+#### 다형성의 활용 예 1 - 다른 타입의 객체를 다루는 배열
+
+* 배열의 특징 - 같은 타입의 데이터를 묶음으로 다룬다.
+* 다형성으로 다른 타입의 데이터를 하나의 배열로 관리
+* Object는 모든 클래스의 조상
+  * Object의 배열은 어떤 타입의 객체라도 다 저장할 수 있음
+* 자바의 자료 구조를 간단하게 처리할 수 있음
+  * 이와 같은 특성을 이용하여 Collection API가 등장하게됨
+  * 기본형은 담을 수 있을까?
+    * 기본형은 Object를 상속 받지 못했다.
+    * 하지만 autoboxing을 통해 담을 수 있다.
+
+```java
+void beforePoly(){
+    Person [] persons = new Person[10];
+    persons[0] = new Person();
+    SpiderMan [] SpiderMans = new SpiderMan[10];
+    SpideMans[0] = new SpiderMan();
+}
+
+
+void afterPoly(){
+    Person[] persons = new Person[10];
+    persons[0] = new Person();
+    persons[1] = new SpiderMan();
+}
+```
+
+
+
+#### 다형성의 활용 예2 - 매개변수의 다형성
+
+* 무언가를 출력하고 싶다!!
+
+  * 메서드가 호출되기 위해서는 메서드 이름과 파라미터가 맞아야 하는데...
+  * public void println(Phone p)
+  * public void println(SmartPhone sp)
+  * ...
+
+* println
+
+  ```java
+  public void println(Objectx) {
+      String s = String.valueOf(x);
+      synchronized (this) {
+          print(s);
+          newLine();
+      }
+  }
+  ```
+
+  * 조상을 파라미터로 처리한다면 객체의 타입에 따라 메서드를 만들 필요가 없어진다.
+
+* API에 파라미터로 Object를 받는다는 것은 `모든 객체`를 처리한다는 말이다.
+* 물론 필요하다면 하위 클래스에서 오버라이딩 필요
+
+
+
+* 다형성과 참조형 객체의 형 변환
+  * 메모리에 있는 것과 사용할 수 있는 것의 차이
+  * 메모리에 있더라도 참조하는 변수의 타입에 따라 접근 할 수 있는 내용이 제한됨
+
+* 참조형 객체의 형 변환
+
+  * 작은 집 (child)에서 큰 집 (super)으로 => 묵시적 캐스팅
+    * 자손 타입의 객체를 조상 타입으로 참조: 형변환 생략 가능
+    * 왜냐면 조상의 모든 내용이 자식에 있기 때문에 걱정 할 필요 없다.
+
+  ```java
+  byte b = 10;
+  int i = b;		// 자동으로 바꿔준다.
+  
+  Phone phone = new Phone();
+  Object obj = phone;
+  ```
+
+  * 큰 집(super)에서 작은 집 (child)으로 => 명시적 캐스팅
+    * 조상 타입을 자손 타입으로 참조 : 형변환 생략 불가
+
+  ```java
+  int i = 10;
+  byte b = (byte)i;		// int에 대한 객체 정보가 없기 때문에 데이터의 손실이 있을 수 있다.
+  
+  Phone phone = new SmartPhone();
+  SmartPhone sPhone = (SmartPhone)phone;
+  ```
+
+  * 무늬만 SpiderMan인 Person
+    * 메모리의 객체는 fireWeb이 없음
+
+  ```java
+  Person person = new Person();
+  SpiderMan sman = (SpiderMan)person;	
+  sman.fireWeb();						//문법상으로는 문제가 없다. 
+  // 하지만 fireWeb이 불가능하다. 정말 형변환 가능한지 확인하고 형변환을 해야한다.
+  ```
+
+  * 조상을 무작정 자손으로 바꿀 수는 없다.
+
+    * instanceof 연산자
+
+      : 실제 메모리에 있는 객체가 특정 클래스 타입인지 boolean으로 리턴
+
+  ```java
+  Person person = new Person();
+  
+  if (person instanceof SpiderMan){
+      Spiderman sman = (SpiderMan)person;
+  }
+  ```
+
+* 참조 변수의 레벨에 따른 객체의 멤버 연결
+
+  ```java
+  class SuperClass{
+      String x = "super";
+      
+      public void method(){
+          System.out.println("super class method")
+      }
+      
+      class SubClass extends SuperClass{
+          String x = "sub";
+          
+          @Override
+          public void method(){
+              System.out.println("sub class method")
+          }
+      }
+  }
+  
+  public class MemberBindingTest{
+      public static void main(String[] args){
+          SubClass subClass = new SubClass();
+          System.out.println(subClass.x);		// sub
+         	subClass.method();					// sub class method
+      	
+          SuperClass superClass = subClass;
+          System.out.println(superClass.x);	// super
+          superClass.method();				// sub class method (가장 완벽한 메서드)
+      }
+  }
+  ```
+
+  * 상속 관계에서 객체의 멤버 변수가 중복될 때
+    * 참조 변수의 타입에 따라 연결이 달라짐
+  * 상속관계에서 객체의 메서드가 중복될 때(메서드가 override) 동적 바인딩
+    * ex) String의 valueOf =>  Object의 toString => 재정의된  toString을 통해 출력
+
+
+
+* Object의 메서드 재정의
+  * toString();
+  * equals(): 두 개의 객체가 참조하는 값이 같은가?
+    * Serial Number만 같아도 true 반환
+
+* 참조 변수의 레벨에 따른 객체의 멤버 연결
+  * 용도에 따른 가장 적합한 메서드 구성은?
+  * 상위로 올라갈 수록 활용도도 높아짐
+    * 하지만 코드의 복잡성도 함께 증가
+  * Java API처럼 공통 기능인 경우 Object를 파라미터로 쓰겠지만
+    * 많은 경우 비즈니스 로직상 최상위 객체 사용 권장
+
+
+
+### 추상 클래스
+
+* 추상클래스의 정의 : `자손 클래스에서 반드시 재정의해서 사용되기 때문에 조상의 구현이 무의미한 메서드`
+  * => 메서드의 선언부만 남기고 구현부는 세미콜론으로 대체
+  * 구현부가 없다는 의미로 abstract 키워드를 메서드 선언부에 추가
+  * 객체를 생성할 수 없는 클래스라는 의미로 선언부에 abstract를 추가
+    * 공통 모듈이어서 정의는 되지만 항상 재정의 되어서 사용한다.
+* 추상 클래스의 특징
+  * abstract 클래스는 상속 전용의 클래스
+    * 클래스에는 구현부가 없는 메서드가 있으므로 **객체를 생성할 수 없음**
+    * 하지만 상위 클래스 타입으로써 자식을 참조할 수는 있다.
+  * 조상 클래스에서 상속받은 abstract 메서드를 재정의하지 않는 경우
+    * 자식 클래스는 abstract클래스로 선언되어야 함
+* 추상 클래스를 사용하는 이유
+  * abstract 클래스는 구현의 강제를 통해 프로그램의 안정성 향상
+  * interface에 있는 메서드 중 구현할 수 있는 메서드를 구현해 개발의 편의 지원
+
+
+
+### 인터페이스
+
+: 서로 다른 두 시스템, 장치, 소프트웨어 따위를 서로 이어주는 부분. 또는 그런 접속장치 
+
+* GUI: Graphic User Interface
+  * 프로그램과 사용자 사이의 접점
